@@ -18,7 +18,10 @@ public class Investor {
 		
 		clubs = new ArrayList<Club>();
 	}
-	public void addOwnerClub( Owner o1 , Club clu1) {
+	
+	
+
+	public void addOwnerClub( Owner o1 , String clu1) {
 		boolean  diferent=false;
 		for (int i =0;i<clubs.size()&& !diferent;i++) {
 			if (clubs.get(i).equalOwner(o1)) {
@@ -28,13 +31,32 @@ public class Investor {
 		}
 		boolean equal =false;
 		for (int i =0;i<clubs.size()&& !equal;i++) {
-			if (clubs.get(i).getId().equals(clu1.getId())) {
+			if (clubs.get(i).getId().equals(clu1)) {
 				diferent=true;
 				clubs.get(i).addOwner(o1);
 			}
 		}
 		
 	}
+
+	public ArrayList<Club> getClubs() {
+    	return clubs;
+    }
+	
+	public void addClub (Club club) {
+		
+		boolean diferent = false;
+		for (int i =0;i<clubs.size()&& !diferent ;i++) {
+			if (clubs.get(i).compareID(club)==0){
+				diferent=true;
+			}
+			if (!diferent){
+				clubs.add(club);
+				
+			}
+		}
+	}
+	
 	//Metodos de ordenamiento
 	public void clubInsercionID() {
 		for (int i =0;i<clubs.size()-1;i++) {
@@ -48,6 +70,8 @@ public class Investor {
 			}
 		}
 	}
+	
+	
 	
 	
 	public void clubBubbleName() {
@@ -79,6 +103,7 @@ public class Investor {
 	}
 	
 	
+	
 	public void clubInsercionMascotType() {
 		for (int i =0;i<clubs.size()-1;i++) {
 			Club  p = clubs.get(i);
@@ -91,6 +116,8 @@ public class Investor {
 			}
 		}
 	}
+	
+	
 	
 	
 

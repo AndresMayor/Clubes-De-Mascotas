@@ -20,7 +20,7 @@ public class Main {
 	*Main constructor
 	*/
 	public Main() {
-		
+		init();
 		reader = new Scanner(System.in);
 		
 	}
@@ -32,6 +32,7 @@ public class Main {
 	public static void main(String[] args) {
 		 Main m = new Main();
 		 m.welcome();
+		 m.showMenu();
 
 	}
 	
@@ -52,7 +53,7 @@ public class Main {
 		int option = 0;
 		while(option != 5){
 		
-		System.out.println("1.");
+		System.out.println("1.Agregar dueno");
 		System.out.println("2.");
 		System.out.println("3.");
 		System.out.println("4.");
@@ -61,8 +62,7 @@ public class Main {
 		reader.nextLine();
 		switch(option) {
 				case(1):
-					
-					
+					addOwner();
 				break;
 			
 				
@@ -74,6 +74,7 @@ public class Main {
 		
 		}
 		
+		
 	
 	
 	
@@ -81,5 +82,33 @@ public class Main {
 	
 		}
 	
+	
+		public void addOwner() {
+		
+		
+		System.out.println("Ingresar  identificacion del club ");
+		String idCLub  = reader.nextLine();
+		
+		System.out.println("Ingresar  identificacion del dueno ");
+		String id = reader.nextLine();
+		System.out.println("Ingrese los nombres: ");
+		String names = reader.nextLine();
+		System.out.println("Ingrese los Apellidos: ");
+		String lastName = reader.nextLine();
+		System.out.println("Ingrese Fecha de Nacimiento: ");
+		String birthDate = reader.nextLine();
+		System.out.println("Ingrese el tipo de Mascotas: ");
+		String mascotType = reader.nextLine();
+		Owner owner = new Owner(id,names,lastName,birthDate,mascotType);
+     
+		user.addOwnerClub(owner, idCLub );
+		System.out.println("El dueno se ha agregado con Exito");
+		}
+		
+		public void init() {
+			user = new Investor();
+			Club club = new Club ("12344","Tus nalgas","30-03-18","pitbull");
+			user.addClub(club);
+		}
 
 }
