@@ -20,7 +20,7 @@ public class Main {
 	*Main constructor
 	*/
 	public Main() {
-		init();
+	
 		reader = new Scanner(System.in);
 		
 	}
@@ -62,8 +62,10 @@ public class Main {
 		reader.nextLine();
 		switch(option) {
 				case(1):
+					
 					addOwner();
 				break;
+				
 			
 				
 				
@@ -104,11 +106,10 @@ public class Main {
 		user.addOwnerClub(owner, idCLub );
 		System.out.println("El dueno se ha agregado con Exito");
 		}
-		
-		public void init() {
-			user = new Investor();
-			Club club = new Club ("12344","Tus nalgas","30-03-18","pitbull");
-			user.addClub(club);
+		public void addClub() {
+			
 		}
+		
+		
 
 }

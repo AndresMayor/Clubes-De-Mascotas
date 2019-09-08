@@ -1,5 +1,16 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Club implements Comparable<Club>{
@@ -14,13 +25,17 @@ public class Club implements Comparable<Club>{
 	private ArrayList<Owner> owners;
 	
 	
-	public Club(String id, String name, String creationdate, String mascotsType) {
+	public Club(String id, String name, String creationdate, String mascotsType) throws IOException  {
 		
 		this.id = id;
 		this.name = name;
 		this.creationdate = creationdate;
 		this.mascotsType = mascotsType;
 		owners = new ArrayList<Owner>();
+		if(!new File(id).exists()) {
+			new File(id).createNewFile();
+		}
+		loadData();
 	}
 
 
@@ -190,6 +205,46 @@ public class Club implements Comparable<Club>{
 					}
 				}
 			}
+			//Metodos de busqueda tradicional y binario 
+			
+			
+			
+			//guarda los dueno y sus mascotas en un archivo que tiene el id del club 
+			
+			
+			
+			public void saveData() throws FileNotFoundException ,IOException{
+				File file = new File (id);
+				BufferedWriter lector = new BufferedWriter(new FileWriter(file));
+				lector.write("");
+				lector.close();
+				ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(file));
+				for (int i =0;i<owners.size();i++) {
+					o.writeObject(owners.get(i));
+					
+				}
+				o.close();
+				
+			}
+			
+			
+			
+			public void loadData() {
+				File file = new File(id);
+				if(file.exists()) {
+					try {
+						ObjectInputStream o = new ObjectInputStream(new FileInputStream(file));
+						owners =(ArrayList<Owner>)o.readObject();
+						o.close();
+					}catch(Exception e) {
+						
+					}
+				}
+			}
+			
+			
+			
+			
 
 			
 			

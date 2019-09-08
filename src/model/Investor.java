@@ -1,12 +1,17 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Investor {
 	
 	
-	public static final String ARCHIVO_PLANO = "‎⁨Macintosh HD⁩ ▸ ⁨Usuarios⁩ ▸ ⁨andresmayor⁩ ▸ ⁨Escritorio⁩ ▸ ⁨CLUBPETS ▸clubs.txt⁩" ;
-	public static final String ARCHIVO_SERIALIZABLE = "‎⁨Macintosh HD⁩ ▸ ⁨Usuarios⁩ ▸ ⁨andresmayor⁩ ▸ ⁨Escritorio⁩ ▸ ⁨CLUBPETS ▸ownerpet.txt⁩" ;
+	public static final String ARCHIVO_PLANO = "‎⁨Macintosh HD⁩ ▸ ⁨Usuarios⁩ ▸ ⁨andresmayor⁩ ▸ ⁨Escritorio⁩ ▸ ⁨CLUBPETS▸archivosapoII.csv" ;
+	
 			
 			
 			
@@ -14,9 +19,10 @@ public class Investor {
 	
 	
 	
-	public Investor() {
+	public Investor() throws ClassNotFoundException, IOException {
 		
 		clubs = new ArrayList<Club>();
+		loadData();
 	}
 	
 	
@@ -117,9 +123,29 @@ public class Investor {
 		}
 	}
 	
+	public void saveData() throws  FileNotFoundException ,IOException{
+		for (int i =0;i<clubs.size();i++) {
+			clubs.get(i).saveData();
+			
+		}
+		
+	}
 	
+	public void loadData() throws IOException, ClassNotFoundException{
+		File file = new File (ARCHIVO_PLANO);
+		BufferedReader lector = new BufferedReader(new FileReader(file));
+		String line;
+		while((line=lector.readLine())!=null) {
+			if(!line.equals("id,name,creationdate,mascotsType")) {
+			String[] array = line.split(",");
+			Club e =new Club(array[0],array[1],array[2],array[3]);
+			clubs.add(e);
+			
+			
+		}
+	}
+	lector.close();
 	
-	
-
+	}
 
 }

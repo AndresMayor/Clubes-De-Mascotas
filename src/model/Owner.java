@@ -184,6 +184,168 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 			}
 		}
 	}
+	
+	//Metodos de busqueda de tradicinal  
+	
+	public String busquedaTradID(String id) {
+		String msg="La Mascota no existe";
+		boolean diferent = false;
+		for (int i =0;i<pets.size() && !diferent ;i++) {
+			if( pets.get(i).getId().equals(id) ) {
+				msg= "Se ha encpntrado la mascota con el Id y su nombre es: "+pets.get(i).getName();
+				diferent = true ;
+			}
+		}
+		return msg;
+		
+	}
+	public String busquedaTradName(String name) {
+		String msg="La Mascota no existe";
+		
+		for (int i =0;i<pets.size()  ;i++) {
+			if( pets.get(i).getName().equals(name) ) {
+				msg += "La(s) Mascota(s) con el nombre Indicado son: ";
+				msg += pets.get(i).getName()+"\n";
+				
+			}
+		}
+		return msg;
+		
+	}
+	public String busquedaTradBirthDate(String mascotType) {
+		String msg="no hay macotas del  tipo indicado ";
+		
+		for (int i =0;i<pets.size() ;i++) {
+			if( pets.get(i).getPetType().equals(mascotType) ) {
+				msg = "La(s) Mascota(s) del  Tipo Indicado son: ";
+			    msg += pets.get(i).getName()+"\n";
+			
+			}
+		}
+		return msg;
+		
+	}
+	public String busquedaTradGender(int mascotType) {
+		String msg="no hay macotas del genero indicado ";
+		
+		for (int i =0;i<pets.size() ;i++) {
+			if( pets.get(i).getGender()==(mascotType) ) {
+				msg = "La(s) Mascota(s) del  Genero  Indicado son: ";
+			    msg += pets.get(i).getName()+"\n";
+			
+			}
+		}
+		return msg;
+		
+	}
+	//Metdos de busqueda Binaria 
+	public int buscarBinarioPorNombre(String  name ) {
+		int position= -1;
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =pets.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(pets.get(mitad).getName().compareTo(name)==0){
+				position = mitad;
+				encontro=true;
+				
+				
+			}else if (pets.get(mitad).getName().compareTo(name)>0) {
+				fin = mitad-1;
+				
+			}else {
+				inicio=mitad+1;
+			}
+		}
+		return position;
+	}
+	
+	
+	public int buscarBinarioPorID(String   id ) {
+		int position= -1;
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =pets.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(pets.get(mitad).getId().compareTo(id)==0){
+				position = mitad;
+				encontro=true;
+				
+				
+			}else if (pets.get(mitad).getId().compareTo(id)>0) {
+				fin = mitad-1;
+				
+			}else {
+				inicio=mitad+1;
+			}
+		}
+		return position;
+	}
+	
+	
+	
+	public int buscarBinarioPorFechaDeNacimiento(String  crationDate ) {
+		int position= -1;
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =pets.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(pets.get(mitad).getBirthDate().compareTo(crationDate)==0){
+				position = mitad;
+				encontro=true;
+				
+				
+			}else if (pets.get(mitad).getBirthDate().compareTo(crationDate)>0) {
+				fin = mitad-1;
+				
+			}else {
+				inicio=mitad+1;
+			}
+		}
+		return position;
+	}
+	
+	
+	public int buscarBinarioPorPetType(String  petType ) {
+		int position= -1;
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =pets.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(pets.get(mitad).getPetType().compareTo(petType)==0){
+				position = mitad;
+				encontro=true;
+				
+				
+			}else if (pets.get(mitad).getPetType().compareTo(petType)>0) {
+				fin = mitad-1;
+				
+			}else {
+				inicio=mitad+1;
+			}
+		}
+		return position;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 
