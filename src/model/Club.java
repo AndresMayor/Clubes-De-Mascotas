@@ -350,22 +350,105 @@ public class Club implements Comparable<Club>{
 				while (inicio<=fin&& !encontro) {
 					int mitad = (inicio+fin)/2;
 					if(owners.get(mitad).getLastNames().compareTo(lastName)==0){
-						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						msg = "Se ha encontarado el dueno por medio del los apellidos indicados";
 						
 						encontro=true;
 						
 						
 					}else if (owners.get(mitad).getLastNames().compareTo(lastName)>0) {
 						fin = mitad-1;
-						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						msg = "Se ha encontarado el dueno por medio de los apellidos indicado";
 						
 					}else {
 						inicio=mitad+1;
-						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						msg = "Se ha encontarado el dueno por medio de los apellidos indicado";
 					}
 				}
 				return msg ;
 			}
+			
+			public String buscarBinarioOwnerBirthDate(String  birthDate ) {
+				String  msg = "the owner does not exist";
+				boolean encontro = false;
+				int inicio = 0;
+				int fin =owners.size()-1;
+				
+				while (inicio<=fin&& !encontro) {
+					int mitad = (inicio+fin)/2;
+					if(owners.get(mitad).getBirthDate().compareTo(birthDate)==0){
+						msg = "Se ha encontarado el dueno por medio de la fecha de nacimiento indicada";
+						
+						encontro=true;
+						
+						
+					}else if (owners.get(mitad).getBirthDate().compareTo(birthDate)>0) {
+						fin = mitad-1;
+						msg = "Se ha encontarado el dueno por medio de la fecha de nacimiento indicada";
+						
+					}else {
+						inicio=mitad+1;
+						msg = "Se ha encontarado el dueno por medio de la fecha de nacimiento indicada";
+					}
+				}
+				return msg ;
+			}
+			
+			
+			public String buscarBinarioOwnerMascotType(String  petType ) {
+				String  msg = "the owner does not exist";
+				boolean encontro = false;
+				int inicio = 0;
+				int fin =owners.size()-1;
+				
+				while (inicio<=fin&& !encontro) {
+					int mitad = (inicio+fin)/2;
+					if(owners.get(mitad).getMascotsType().compareTo(petType)==0){
+						msg = "Se ha encontrado la preferencia del tipo de mascota del dueno";
+						
+						encontro=true;
+						
+						
+					}else if (owners.get(mitad).getMascotsType().compareTo(petType)>0) {
+						fin = mitad-1;
+						msg = "Se ha encontrado la preferencia del tipo de mascota del dueno";
+						
+					}else {
+						inicio=mitad+1;
+						msg ="Se ha encontrado la preferencia del tipo de mascota del dueno";
+					}
+				}
+				return msg ;
+			}
+			
+			
+			public String buscarBinarioOwnerId(String  iD ) {
+				String  msg = "the owner does not exist";
+				boolean encontro = false;
+				int inicio = 0;
+				int fin =owners.size()-1;
+				
+				while (inicio<=fin&& !encontro) {
+					int mitad = (inicio+fin)/2;
+					if(owners.get(mitad).getId().compareTo(iD)==0){
+						msg = "se ha encontrado el dueno por medio de la identificacion";
+						
+						encontro=true;
+						
+						
+					}else if (owners.get(mitad).getId().compareTo(iD)>0) {
+						fin = mitad-1;
+						msg ="se ha encontrado el dueno por medio de la identificacion";
+						
+					}else {
+						inicio=mitad+1;
+						msg ="se ha encontrado el dueno por medio de la identificacion";
+					}
+				}
+				return msg ;
+			}
+			
+			
+			
 			
 			
 			
