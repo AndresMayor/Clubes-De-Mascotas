@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class Club implements Comparable<Club>{
 	
-	
+	 
 	private String id;
 	private String name;
 	private String creationdate;
@@ -97,11 +97,11 @@ public class Club implements Comparable<Club>{
 	
 	public void addOwner(Owner owner) {
 		boolean diferen = false;
-		for (int i = 0 ;i<owners.size() && !diferen;i++) {
-			if (owners.get(i).getId().equals(owner.getId())) {
-				diferen=true;
-			}
-			if (!diferen) {
+			for (int i = 0 ;i<owners.size() && !diferen;i++) {
+				if (owners.get(i).getId().equals(owner.getId())) {
+					diferen=true;
+					}
+					if (!diferen) {
 				owners.add(owner);
 			}
 		}
@@ -110,6 +110,98 @@ public class Club implements Comparable<Club>{
 	
 	
 	
+	public boolean equalOwner (Owner o1) {
+		 boolean diferent = false;
+		 for (int i=0;i<owners.size() && !diferent; i++) {
+			 if (owners.get(i).compareID(o1)==0) {
+				 diferent=true;
+			 }
+			
+	}
+		 return diferent;
+	
+	}
+	//Metodos de Ordenamiento
+		public void ortherBubbleOwnerID() {
+		for (int i =0;i<owners.size();i++) {
+			for (int j =1;j>0;j--) {
+				if(owners.get(j-1).compareID(owners.get(j))>0){
+					
+					Owner temp= owners.get(j);
+					owners.set(j, owners.get(j+1));
+					owners.set(j+1,temp);
+					
+				}
+			}
+		}
+	}
 	
 
+		public void ortherBubbleOwnerName() {
+		for (int i =0;i<owners.size();i++) {
+			for (int j =1;j>0;j--) {
+				if(owners.get(j-1).compareNames(owners.get(j))>0){
+					
+					Owner temp= owners.get(j);
+					owners.set(j, owners.get(j+1));
+					owners.set(j+1,temp);
+					
+				}
+			}
+		}
+	}
+
+		public void ortherInsercionOwnerBirthDay() {
+			for (int i =0;i<owners.size()-1;i++) {
+				Owner  p = owners.get(i);
+				int cual = i;
+				for (int j = i+1;j<owners.size();j++) {
+					if (p .compare(p, owners.get(j))>0) {
+					p =owners.get(j);
+					cual = j ;
+					}
+				}
+			}
+		}
+			
+			
+			public void ortherBubbleOwnerMascost() {
+				for (int i =0;i<owners.size();i++) {
+					for (int j =1;j>0;j--) {
+						if(owners.get(j-1).comparePetType(owners.get(j))>0){
+							
+							Owner temp= owners.get(j);
+							owners.set(j, owners.get(j+1));
+							owners.set(j+1,temp);
+							
+						}
+					}
+				}
+			}
+			public void ortherBubbleOwnerLastName() {
+				for (int i =0;i<owners.size();i++) {
+					for (int j =1;j>0;j--) {
+						if(owners.get(j-1).compareLastNames(owners.get(j))>0){
+							
+							Owner temp= owners.get(j);
+							owners.set(j, owners.get(j+1));
+							owners.set(j+1,temp);
+							
+						}
+					}
+				}
+			}
+
+			
+			
+			
+			
+
+			
+			
+	
+			
+
+	
 }
+		
