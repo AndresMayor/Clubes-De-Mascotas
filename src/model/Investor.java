@@ -147,5 +147,172 @@ public class Investor {
 	lector.close();
 	
 	}
+	//Metodos de Busqueda Tradicional
+	public String busquedaTradID(String id) {
+		String msg="the club does not exist";
+		boolean diferent = false;
+		for (int i =0;i<clubs.size() && !diferent ;i++) {
+			if( clubs.get(i).getId().equals(id) ) {
+				msg= "Se ha encontrado el club por medio del id : "+clubs.get(i).getName();
+				diferent = true ;
+			}
+		}
+		return msg;
+		
+	}
+	public String busquedaTradName(String name) {
+		String msg="the club does not exist";
+		
+		for (int i =0;i<clubs.size()  ;i++) {
+			if(clubs.get(i).getName().equals(name) ) {
+				msg += "Se ha encontrado el club  : ";
+				msg += clubs.get(i).getName()+"\n";
+				
+			}
+		}
+		return msg;
+		
+	}
+	public String busquedaTradCreationDate(String creationDate) {
+		String msg="the club does not exist";
+		boolean diferent = false;
+		for (int i =0;i<clubs.size() && !diferent ;i++) {
+			if( clubs.get(i).getCreationdate().equals(creationDate)) {
+				msg= "Se ha encontrado el club por medio de la fecha de cracion: "+clubs.get(i).getName();
+				diferent = true ;
+			}
+		}
+		return msg;
+		
+	}
+	public String busquedaTradMascotsType(String petMascot) {
+		String msg="the club does not exist";
+		boolean diferent = false;
+		for (int i =0;i<clubs.size() && !diferent ;i++) {
+			if( clubs.get(i).getMascotsType().equals(petMascot) ) {
+				msg= "Se ha encontrado el club por medio de las mascotas"+clubs.get(i).getName();
+				diferent = true ;
+			}
+		}
+		return msg;
+		
+	}
+	//Metodos de busqueda Binaria 
+	
+	public String buscarBinarioClubId(String  iD ) {
+		String  msg = "the club does not exist";
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =clubs.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(clubs.get(mitad).getId().compareTo(iD)==0){
+				msg = "se ha encontrado el club por medio de la identificacion";
+				
+				encontro=true;
+				
+				
+			}else if (clubs.get(mitad).getId().compareTo(iD)>0) {
+				fin = mitad-1;
+				msg ="se ha encontrado el club por medio de la identificacion";
+				
+			}else {
+				inicio=mitad+1;
+				msg ="se ha encontrado el club por medio de la identificacion";
+			}
+		}
+		return msg ;
+	}
+	
+	
+	public String buscarBinarioOwnerName(String  name ) {
+		String  msg = "the club does not exist";
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =clubs.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(clubs.get(mitad).getName().compareTo(name)==0){
+				msg = "se ha encontrado el club por medio del nombre";
+				
+				encontro=true;
+				
+				
+			}else if (clubs.get(mitad).getName().compareTo(name)>0) {
+				fin = mitad-1;
+				msg ="se ha encontrado el club  por medio del nombre ";
+				
+			}else {
+				inicio=mitad+1;
+				msg ="se ha encontrado el club  por medio del nombre ";
+			}
+		}
+		return msg ;
+	}
+	
+
+	public String buscarBinarioOwnerCreationDate(String  creationDate ) {
+		String  msg = "the club does not exist";
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =clubs.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(clubs.get(mitad).getCreationdate().compareTo(creationDate)==0){
+				msg = "se ha encontrado el club por medio de la fecha de creacion";
+				
+				encontro=true;
+				
+				
+			}else if (clubs.get(mitad).getCreationdate().compareTo(creationDate)>0) {
+				fin = mitad-1;
+				msg ="se ha encontrado el club  por medio de la fecha de creacion  ";
+				
+			}else {
+				inicio=mitad+1;
+				msg ="se ha encontrado el club  por de la fecha de creacion ";
+			}
+		}
+		return msg ;
+	}
+	
+
+	public String buscarBinarioOwnerMascorType(String  mascotType ) {
+		String  msg = "the club does not exist";
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =clubs.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(clubs.get(mitad).getMascotsType().compareTo(mascotType)==0){
+				msg = "se ha encontrado el club por medio del tipo de mascotas";
+				
+				encontro=true;
+				
+				
+			}else if (clubs.get(mitad).getMascotsType().compareTo(mascotType)>0) {
+				fin = mitad-1;
+				msg ="se ha encontrado el club  por medio del tipo de mascota ";
+				
+			}else {
+				inicio=mitad+1;
+				msg ="se ha encontrado el club  por medio del tipo de mascota ";
+			}
+		}
+		return msg ;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
