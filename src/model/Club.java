@@ -243,6 +243,135 @@ public class Club implements Comparable<Club>{
 			}
 			
 			
+			//Metodos de Busqueda Tradicional
+			
+			
+			
+			public String busquedaTradID(String id) {
+				String msg="the owner does not exist";
+				boolean diferent = false;
+				for (int i =0;i<owners.size() && !diferent ;i++) {
+					if( owners.get(i).getId().equals(id) ) {
+						msg= "Se ha encontrado el dueno con el Id y su nombre es: "+owners.get(i).getNames();
+						diferent = true ;
+					}
+				}
+				return msg;
+				
+			}
+			public String busquedaTradName(String name) {
+				String msg="the owner does not exist";
+				
+				for (int i =0;i<owners.size()  ;i++) {
+					if(owners.get(i).getNames().equals(name) ) {
+						msg += "La persona con el nombre incado es : ";
+						msg += owners.get(i).getNames()+"\n";
+						
+					}
+				}
+				return msg;
+				
+			}
+			public String busquedaTradLastNames(String lastName) {
+				String msg="the owner does not exist";
+				
+				for (int i =0;i<owners.size()  ;i++) {
+					if(owners.get(i).getLastNames().equals(lastName) ) {
+						msg += "La persona con el apellido  incado es : ";
+						msg += owners.get(i).getLastNames()+"\n";
+						
+					}
+				}
+				return msg;
+				
+			}
+			public String busquedaTradBirthDate(String birthDate) {
+				String msg="the owner does not exist";
+				
+				for (int i =0;i<owners.size()  ;i++) {
+					if(owners.get(i).getBirthDate().equals(birthDate) ) {
+						msg += "La persona con la fecha de naciemiento incada es : ";
+						msg += owners.get(i).getNames()+" "+"\n";
+						
+					}
+				}
+				return msg;
+				
+			}
+			public String busquedaTradOwnerMascotType(String petType) {
+				String msg="the owner does not exist";
+				
+				for (int i =0;i<owners.size()  ;i++) {
+					if(owners.get(i).getMascotsType().equals(petType) ) {
+						msg += "El tipo de mascota que prefiere(n) el(los) dueno(s) es (son) : ";
+						msg += owners.get(i).getMascotsType()+"\n";
+						
+					}
+				}
+				return msg;
+				
+			}
+			
+			
+			//Busqueda Binaria
+			
+			public String buscarBinarioPorOwnerName(String  name ) {
+				String  msg = "the owner does not exist";
+				boolean encontro = false;
+				int inicio = 0;
+				int fin =owners.size()-1;
+				
+				while (inicio<=fin&& !encontro) {
+					int mitad = (inicio+fin)/2;
+					if(owners.get(mitad).getNames().compareTo(name)==0){
+						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						
+						encontro=true;
+						
+						
+					}else if (owners.get(mitad).getNames().compareTo(name)>0) {
+						fin = mitad-1;
+						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						
+					}else {
+						inicio=mitad+1;
+						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+					}
+				}
+				return msg ;
+			}
+			
+			public String buscarBinarioOwnerLastName(String  lastName ) {
+				String  msg = "the owner does not exist";
+				boolean encontro = false;
+				int inicio = 0;
+				int fin =owners.size()-1;
+				
+				while (inicio<=fin&& !encontro) {
+					int mitad = (inicio+fin)/2;
+					if(owners.get(mitad).getLastNames().compareTo(lastName)==0){
+						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						
+						encontro=true;
+						
+						
+					}else if (owners.get(mitad).getLastNames().compareTo(lastName)>0) {
+						fin = mitad-1;
+						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						
+					}else {
+						inicio=mitad+1;
+						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+					}
+				}
+				return msg ;
+			}
+			
+			
+			
+			
+			
+			
 			
 			
 
