@@ -225,6 +225,19 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 		return msg;
 		
 	}
+	public String busquedaTradPettype(String mascotType) {
+		String msg="no hay macotas del tipo indicado indicado ";
+		
+		for (int i =0;i<pets.size() ;i++) {
+			if( pets.get(i).getPetType()==(mascotType) ) {
+				msg = "La(s) Mascota(s) del  tipo   Indicado son: ";
+			    msg += pets.get(i).getName()+"\n";
+			
+			}
+		}
+		return msg;
+		
+	}
 	public String busquedaTradGender(int mascotType) {
 		String msg="no hay macotas del genero indicado ";
 		
@@ -238,8 +251,9 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 		return msg;
 		
 	}
+	
 	//Metdos de busqueda Binaria 
-	public int buscarBinarioPorNombre(String  name ) {
+	public boolean buscarBinarioPorNombre(String  name ) {
 		int position= -1;
 		boolean encontro = false;
 		int inicio = 0;
@@ -259,11 +273,11 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 				inicio=mitad+1;
 			}
 		}
-		return position;
+		return encontro;
 	}
 	
 	
-	public int buscarBinarioPorID(String   id ) {
+	public boolean buscarBinarioPorID(String   id ) {
 		int position= -1;
 		boolean encontro = false;
 		int inicio = 0;
@@ -283,12 +297,12 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 				inicio=mitad+1;
 			}
 		}
-		return position;
+		return encontro;
 	}
 	
 	
 	
-	public int buscarBinarioPorFechaDeNacimiento(String  crationDate ) {
+	public boolean buscarBinarioPorFechaDeNacimiento(String  crationDate ) {
 		int position= -1;
 		boolean encontro = false;
 		int inicio = 0;
@@ -308,11 +322,11 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 				inicio=mitad+1;
 			}
 		}
-		return position;
+		return encontro;
 	}
 	
 	
-	public int buscarBinarioPorPetType(String  petType ) {
+	public boolean buscarBinarioPorPetType(String  petType ) {
 		int position= -1;
 		boolean encontro = false;
 		int inicio = 0;
@@ -332,7 +346,30 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 				inicio=mitad+1;
 			}
 		}
-		return position;
+		return encontro;
+	}
+	
+	public boolean  buscarBinarioGender(int   gender ) {
+		int position= -1;
+		boolean encontro = false;
+		int inicio = 0;
+		int fin =pets.size()-1;
+		
+		while (inicio<=fin&& !encontro) {
+			int mitad = (inicio+fin)/2;
+			if(pets.get(mitad).getGender()==gender){
+				position = mitad;
+				encontro=true;
+				
+				
+			}else if (pets.get(mitad).getGender()>0) {
+				fin = mitad-1;
+				
+			}else {
+				inicio=mitad+1;
+			}
+		}
+		return encontro;
 	}
 	
 	

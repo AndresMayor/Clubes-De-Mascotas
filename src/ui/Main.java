@@ -54,17 +54,21 @@ public class Main {
 		while(option != 5){
 		
 		System.out.println("1.Agregar dueno");
-		System.out.println("2.");
-		System.out.println("3.");
-		System.out.println("4.");
+		System.out.println("2.BUSCAR CLUB");
+		System.out.println("3.BUSCAR DUENO");
+		System.out.println("4.BUSCAR MASCOTA");
+
 		System.out.println("5.Exit.");
 		option =reader.nextInt();
 		reader.nextLine();
 		switch(option) {
 				case(1):
-					
-					addOwner();
+						addOwner();
 				break;
+				case(2):
+					buscarClub();
+				break;
+					
 				
 			
 				
@@ -107,6 +111,74 @@ public class Main {
 		System.out.println("El dueno se ha agregado con Exito");
 		}
 		public void addClub() {
+			
+		}
+		public void buscarClub() {
+			System.out.println("Por Favor Seleccione por que criterio desea buscar el Club");
+			System.out.println("1.Indetificacion");
+			System.out.println("2.Nombre");
+			System.out.println("3.Fecha de Creacion");
+			System.out.println("4.Tipo de Mascota");
+			int option =reader.nextInt();
+			if (option ==1) {
+				System.out.println("Por Favor Digite La identificacion del club:");
+				String id =reader.nextLine();
+				long t1 = System.currentTimeMillis();
+				user.busquedaTradID(id);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 =System.currentTimeMillis();
+				user.buscarBinarioClubId(id);
+				long t4 = System.currentTimeMillis();
+				long busquBina  =(t4-t3);
+				System.out.println("El Metodo  Tradicional Ha demorado "+resul);
+				System.out.println("El Metodo  de busqueda binaria  ha demorado "+busquBina);
+
+				
+			}else if (option ==2 ) {
+				System.out.println("Por Favor Digite El Nombre del club:");
+				String name = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.busquedaTradName(name);
+				long t2 =System.currentTimeMillis();
+				long resul = (t2-t1);
+				long  t3 =System.currentTimeMillis();
+				user.buscarBinarioClubName(name);
+				long t4 =System.currentTimeMillis();
+				
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}else if (option==3) {
+				System.out.println("Por Favor La Fecha de Cracion del club en formato AAAA/MM/DD:");
+				String date = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.busquedaTradCreationDate(date);
+				long t2 =System.currentTimeMillis();
+				long resul = (t2-t1);
+				long  t3 =System.currentTimeMillis();
+				user.buscarBinarioClubCreationDate(date);
+				long t4 =System.currentTimeMillis();
+				
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}else if (option == 4){
+				System.out.println("Por Favor Digite El tipo de mascota del club:");
+				String petType = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.busquedaTradMascotsType(petType);
+				long t2 =System.currentTimeMillis();
+				long resul = (t2-t1);
+				long  t3 =System.currentTimeMillis();
+				user.buscarBinarioClubMascorType(petType);
+				long t4 =System.currentTimeMillis();
+				
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}
+			
 			
 		}
 		

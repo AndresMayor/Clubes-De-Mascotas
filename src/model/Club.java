@@ -331,11 +331,11 @@ public class Club implements Comparable<Club>{
 						
 					}else if (owners.get(mitad).getNames().compareTo(name)>0) {
 						fin = mitad-1;
-						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						
 						
 					}else {
 						inicio=mitad+1;
-						msg = "Se ha encontarado el dueno por medio del nombre indicado";
+						
 					}
 				}
 				return msg ;
@@ -357,11 +357,11 @@ public class Club implements Comparable<Club>{
 						
 					}else if (owners.get(mitad).getLastNames().compareTo(lastName)>0) {
 						fin = mitad-1;
-						msg = "Se ha encontarado el dueno por medio de los apellidos indicado";
+					
 						
 					}else {
 						inicio=mitad+1;
-						msg = "Se ha encontarado el dueno por medio de los apellidos indicado";
+						
 					}
 				}
 				return msg ;
@@ -383,11 +383,11 @@ public class Club implements Comparable<Club>{
 						
 					}else if (owners.get(mitad).getBirthDate().compareTo(birthDate)>0) {
 						fin = mitad-1;
-						msg = "Se ha encontarado el dueno por medio de la fecha de nacimiento indicada";
+					
 						
 					}else {
 						inicio=mitad+1;
-						msg = "Se ha encontarado el dueno por medio de la fecha de nacimiento indicada";
+						
 					}
 				}
 				return msg ;
@@ -410,11 +410,11 @@ public class Club implements Comparable<Club>{
 						
 					}else if (owners.get(mitad).getMascotsType().compareTo(petType)>0) {
 						fin = mitad-1;
-						msg = "Se ha encontrado la preferencia del tipo de mascota del dueno";
+						
 						
 					}else {
 						inicio=mitad+1;
-						msg ="Se ha encontrado la preferencia del tipo de mascota del dueno";
+						
 					}
 				}
 				return msg ;
@@ -437,15 +437,102 @@ public class Club implements Comparable<Club>{
 						
 					}else if (owners.get(mitad).getId().compareTo(iD)>0) {
 						fin = mitad-1;
-						msg ="se ha encontrado el dueno por medio de la identificacion";
+			
 						
 					}else {
 						inicio=mitad+1;
-						msg ="se ha encontrado el dueno por medio de la identificacion";
+						
 					}
 				}
 				return msg ;
 			}
+			
+			//responsabilidades pet trad 
+			public String  tradSearchNamePet(String name) {
+				String msg = "";
+				boolean diferent = false;
+				for (int i=0;i<owners.size() && !diferent ;i++) {
+					msg = owners.get(i).busquedaTradName(name);
+					diferent=true;
+				}
+				return msg;
+			}
+			
+			public String  tradSearchID(String id) {
+				String msg = "";
+				boolean diferent = false;
+				for (int i=0;i<owners.size() && !diferent ;i++) {
+					msg = owners.get(i).busquedaTradID(id);
+					diferent=true;
+				}
+				return msg;
+			}
+			public String  tradSearchBirtDate(String birthDate) {
+				String msg = "";
+				boolean diferent = false;
+				for (int i=0;i<owners.size() && !diferent ;i++) {
+					msg = owners.get(i).busquedaTradBirthDate(birthDate);
+					diferent=true;
+				}
+				return msg;
+			}
+			public String  tradSearchPetType(String petType) {
+				String msg = "";
+				boolean diferent = false;
+				for (int i=0;i<owners.size() && !diferent ;i++) {
+					msg = owners.get(i).busquedaTradPettype(petType);
+					diferent=true;
+				}
+				return msg;
+			}
+			public String  tradSearchPetGender(int gender) {
+				String msg = "";
+				boolean diferent = false;
+				for (int i=0;i<owners.size() && !diferent ;i++) {
+					msg = owners.get(i).busquedaTradGender(gender);
+					diferent=true;
+				}
+				return msg;
+			}
+			//Responsabilidades de Metodo binario 
+			public boolean binSearchNamePet(String name) {
+				boolean diferent =false;
+				for(int i = 0;i<owners.size() && !diferent ; i++) {
+					diferent = owners.get(i).buscarBinarioPorNombre(name);
+				}
+				return diferent;
+			}
+			
+			
+			public boolean binSearchID(String id) {
+				boolean diferent =false;
+				for(int i = 0;i<owners.size() && !diferent ; i++) {
+					diferent = owners.get(i).buscarBinarioPorID(id);
+				}
+				return diferent;
+			}
+			public boolean binSearchBirthDate(String birthDate) {
+				boolean diferent =false;
+				for(int i = 0;i<owners.size() && !diferent ; i++) {
+					diferent = owners.get(i).buscarBinarioPorFechaDeNacimiento(birthDate);
+				}
+				return diferent;
+			}
+			public boolean binSearchPetType(String petType) {
+				boolean diferent =false;
+				for(int i = 0;i<owners.size() && !diferent ; i++) {
+					diferent = owners.get(i).buscarBinarioPorFechaDeNacimiento(petType);
+				}
+				return diferent;
+			}
+			public boolean binSearchPetGender(int gender) {
+				boolean diferent =false;
+				for(int i = 0;i<owners.size() && !diferent ; i++) {
+					diferent = owners.get(i).buscarBinarioGender(gender);
+				}
+				return diferent;
+			}
+			
 			
 			
 			
