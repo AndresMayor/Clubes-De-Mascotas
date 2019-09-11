@@ -65,9 +65,21 @@ public class Main {
 				case(1):
 						addOwner();
 				break;
+				
 				case(2):
+					
 					buscarClub();
+				
 				break;
+				
+				case(3):
+					
+					buscarDueno();
+				
+				break;
+					
+				
+				
 					
 				
 			
@@ -113,6 +125,8 @@ public class Main {
 		public void addClub() {
 			
 		}
+		
+		
 		public void buscarClub() {
 			System.out.println("Por Favor Seleccione por que criterio desea buscar el Club");
 			System.out.println("1.Indetificacion");
@@ -179,6 +193,170 @@ public class Main {
 				
 			}
 			
+			
+		}
+		
+		
+		public void buscarDueno() {
+			
+			System.out.println("Por Favor Seleccione por que criterio desea buscar el owner");
+			System.out.println("1.Identificacion");
+			System.out.println("2.Nombres");
+			System.out.println("3.Apellidos");
+			System.out.println("4.Fecha De nacimiento");
+			System.out.println("5.Tipo de Mascotas");
+			
+			int option =reader.nextInt();
+			
+			if (option==1) {
+				
+				System.out.println("Por Favor Digite la identificacion del dueno");
+				String id  =reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchOwnerId(id);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchOwnerId(id);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+				
+			}else if (option==2) {
+				
+				System.out.println("Por Favor Digite los nombres de dueno");
+				String names =reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchNameOwner(names);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchOwnerNames(names);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));			
+				
+			}else if (option==3) {
+				System.out.println("Por Favor Digite los apellidos del dueno");
+				String Lastnames =reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchLastNamesOwner(Lastnames);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchOwnerLastNames(Lastnames);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));	
+				
+			}else if(option==4) {
+				System.out.println("Por Favor Digite la fecha de nacimiento del dueno");
+				String creationDate =reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchBirthDateOwner(creationDate);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchOwnerBirthDate(creationDate);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}else if (option ==5 ) {
+				System.out.println("Por Favor Digite el tipo de mascotas del dueno");
+				String mascotType =reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchPetTypeOwner(mascotType);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchOwnerPetType(mascotType);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}
+			
+		}
+		
+		
+		public void buscarMascot() {
+			System.out.println("Por Favor Seleccione por que criterio desea buscar de la mascota ");
+			System.out.println("1.Identificacion");
+			System.out.println("2.Nombre");
+			System.out.println("3.Fecha de Nacimiento");
+			System.out.println("4.Tipo de Mascota ");
+			System.out.println("5.Genero");
+			
+			int option =reader.nextInt();
+			if (option == 1) {
+				System.out.println("Por Favor Digite La Identificacion de la Mascota: ");
+				String id = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchIdPet(id);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearcIdPet(id);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+
+			}else if (option==2){
+				System.out.println("Por Favor Digite el nombre de la mascota  Mascota: ");
+				String name  = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchNamePet(name);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchNameMascot(name);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}else if (option ==3) {
+				System.out.println("Por Favor Digite La fecha de nacimeto de la Mascota en formato AAAA/MM/DDD : ");
+				String creationDate = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchBirthDate(creationDate);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchBirthDate(creationDate);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+				
+			}else if(option ==4) {
+				System.out.println("Por Favor Digite El tipo de la Mascota: ");
+				String petType = reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchPetType(petType);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchPetType(petType);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+			}else if(option==5) {
+				System.out.println("Por Favor Digite El genero de la mascota: ");
+				
+				int  gender = reader.nextInt();
+				reader.nextLine();
+				long t1 =System.currentTimeMillis();
+				user.tradSearchGenderPet(gender);
+				long t2 = System.currentTimeMillis();
+				long resul = (t2-t1);
+				long t3 = System.currentTimeMillis();
+				user.binaSearchGender(gender);
+				long t4 =System.currentTimeMillis();
+				System.out.println("El metodo Tradicional ha demorado: "+resul);
+				System.out.println("El metodo de busqueda Binaria ha demorado"+(t4-t3));
+			}
 			
 		}
 		
