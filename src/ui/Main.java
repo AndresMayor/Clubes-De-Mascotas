@@ -77,6 +77,13 @@ public class Main {
 					buscarDueno();
 				
 				break;
+				
+				case(4):
+					buscarMascot();
+				
+				break;
+					
+					
 					
 				
 				
