@@ -86,6 +86,12 @@ public class Pet {
 	public int compareGender(Pet mascot) {
 		return gender-mascot.getGender();
 	}
+
+	@Override
+	public String toString() {
+		return "Pet [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", petType=" + petType + ", gender="
+				+ gender + "]";
+	}
 	
 	
 	

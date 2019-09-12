@@ -25,7 +25,7 @@ public class Club implements Comparable<Club>{
 	private ArrayList<Owner> owners;
 	
 	
-	public Club(String id, String name, String creationdate, String mascotsType) throws IOException  {
+	public Club(String id, String name, String creationdate, String mascotsType)  {
 		
 		this.id = id;
 		this.name = name;
@@ -33,7 +33,12 @@ public class Club implements Comparable<Club>{
 		this.mascotsType = mascotsType;
 		owners = new ArrayList<Owner>();
 		if(!new File(id).exists()) {
-			new File(id).createNewFile();
+			try {
+				new File(id).createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		loadData();
 	}
@@ -109,20 +114,9 @@ public class Club implements Comparable<Club>{
 	}
 
 	
-	public void addOwner(Owner owner) {
-		boolean diferen = false;
-			for (int i = 0 ;i<owners.size() && !diferen;i++) {
-				if (owners.get(i).getId().equals(owner.getId())) {
-					diferen=true;
-					}
-					if (!diferen) {
-				owners.add(owner);
-			}
-		}
-	}
 	
 	
-	
+
 	
 	public boolean equalOwner (Owner o1) {
 		 boolean diferent = false;
@@ -137,33 +131,33 @@ public class Club implements Comparable<Club>{
 	}
 	//Metodos de Ordenamiento
 		public void ortherBubbleOwnerID() {
-		for (int i =0;i<owners.size();i++) {
-			for (int j =1;j>0;j--) {
-				if(owners.get(j-1).compareID(owners.get(j))>0){
-					
-					Owner temp= owners.get(j);
-					owners.set(j, owners.get(j+1));
-					owners.set(j+1,temp);
-					
+			for (int i = 1; i < owners.size(); i++) {
+				for (int j = i; j > 0 && owners.get(j-1).compareID(owners.get(j))>0; j--) {
+					Owner tmp = owners.get(j);
+					owners.set(j, owners.get(j-1));
+					owners.set(j-1, tmp);
 				}
 			}
 		}
-	}
 	
 
 		public void ortherBubbleOwnerName() {
-		for (int i =0;i<owners.size();i++) {
-			for (int j =1;j>0;j--) {
-				if(owners.get(j-1).compareNames(owners.get(j))>0){
-					
-					Owner temp= owners.get(j);
-					owners.set(j, owners.get(j+1));
-					owners.set(j+1,temp);
+			for (int i = 0; i < owners.size()-1; i++) {
+				Owner o1 = owners.get(i);
+				int cual = i;
+				for (int j = i+1; j < owners.size(); j++) {
+					if(owners.get(j).compareNames(o1)<0) {
+						o1 = owners.get(j);
+						cual = j;
+					}
 					
 				}
+				Owner tmp = owners.get(i);
+				owners.set(i, o1);
+				owners.set(cual, tmp);
 			}
 		}
-	}
+	
 
 		public void ortherInsercionOwnerBirthDay() {
 			for (int i =0;i<owners.size()-1;i++) {
@@ -179,17 +173,20 @@ public class Club implements Comparable<Club>{
 		}
 			
 			
-			public void ortherBubbleOwnerMascost() {
-				for (int i =0;i<owners.size();i++) {
-					for (int j =1;j>0;j--) {
-						if(owners.get(j-1).comparePetType(owners.get(j))>0){
-							
-							Owner temp= owners.get(j);
-							owners.set(j, owners.get(j+1));
-							owners.set(j+1,temp);
-							
+			public void ortherOwnerMascost() {
+				for (int i = 0; i < owners.size()-1; i++) {
+					Owner menor = owners.get(i);
+					int cual = i;
+					for (int j = i+1; j < owners.size(); j++) {
+						if(owners.get(j).comparePetType(menor)<0) {
+							menor = owners.get(j);
+							cual = j;
 						}
+						
 					}
+					Owner tmp = owners.get(i);
+					owners.set(i, menor);
+					owners.set(cual, tmp);
 				}
 			}
 			public void ortherBubbleOwnerLastName() {
@@ -252,8 +249,10 @@ public class Club implements Comparable<Club>{
 				boolean diferent = false;
 				for (int i =0;i<owners.size() && !diferent ;i++) {
 					if( owners.get(i).getId().equals(id) ) {
-						msg= "Se ha encontrado el dueno con el Id y su nombre es: "+owners.get(i).getNames();
 						diferent = true ;
+						msg= "Se ha encontrado el dueno con el Id y su nombre es: ";
+						
+						
 					}
 				}
 				return msg;
@@ -264,8 +263,8 @@ public class Club implements Comparable<Club>{
 				
 				for (int i =0;i<owners.size()  ;i++) {
 					if(owners.get(i).getNames().equals(name) ) {
-						msg += "La persona con el nombre incado es : ";
-						msg += owners.get(i).getNames()+"\n";
+						msg = "La persona con el nombre incado es : ";
+						//msg += owners.get(i).getNames()+"\n";
 						
 					}
 				}
@@ -324,9 +323,10 @@ public class Club implements Comparable<Club>{
 				while (inicio<=fin&& !encontro) {
 					int mitad = (inicio+fin)/2;
 					if(owners.get(mitad).getNames().compareTo(name)==0){
-						msg = "Se ha encontarado el dueno por medio del nombre indicado";
-						
 						encontro=true;
+						msg = "Bina.Se ha encontarado el dueno por medio del nombre indicado";
+						
+						
 						
 						
 					}else if (owners.get(mitad).getNames().compareTo(name)>0) {
@@ -350,7 +350,7 @@ public class Club implements Comparable<Club>{
 				while (inicio<=fin&& !encontro) {
 					int mitad = (inicio+fin)/2;
 					if(owners.get(mitad).getLastNames().compareTo(lastName)==0){
-						msg = "Se ha encontarado el dueno por medio del los apellidos indicados";
+						msg = "Bin.se ha encontrado el dueno por medio de la identificacion";
 						
 						encontro=true;
 						
@@ -403,7 +403,7 @@ public class Club implements Comparable<Club>{
 				while (inicio<=fin&& !encontro) {
 					int mitad = (inicio+fin)/2;
 					if(owners.get(mitad).getMascotsType().compareTo(petType)==0){
-						msg = "Se ha encontrado la preferencia del tipo de mascota del dueno";
+						msg = "Bin. Se ha encontrado la preferencia del tipo de mascota del dueno";
 						
 						encontro=true;
 						
@@ -422,7 +422,7 @@ public class Club implements Comparable<Club>{
 			
 			
 			public String buscarBinarioOwnerId(String  iD ) {
-				String  msg = "the owner does not exist";
+				String  msg = "the owner not exist";
 				boolean encontro = false;
 				int inicio = 0;
 				int fin =owners.size()-1;
@@ -430,17 +430,22 @@ public class Club implements Comparable<Club>{
 				while (inicio<=fin&& !encontro) {
 					int mitad = (inicio+fin)/2;
 					if(owners.get(mitad).getId().compareTo(iD)==0){
-						msg = "se ha encontrado el dueno por medio de la identificacion";
+						
+						msg = "Bin.se ha encontrado el dueno por medio de la identificacion";
 						
 						encontro=true;
 						
 						
 					}else if (owners.get(mitad).getId().compareTo(iD)>0) {
 						fin = mitad-1;
+						msg = "Bin.se ha encontrado el dueno por medio de la identificacion";
+				
 			
 						
 					}else {
 						inicio=mitad+1;
+						msg = "Bin.se ha encontrado el dueno por medio de la identificacion";
+						
 						
 					}
 				}
@@ -452,7 +457,7 @@ public class Club implements Comparable<Club>{
 				String msg = "";
 				boolean diferent = false;
 				for (int i=0;i<owners.size() && !diferent ;i++) {
-					msg = owners.get(i).busquedaTradName(name);
+					if(owners.get(i).busquedaTradName(name).equals("La(s) Mascota(s) con el nombre Indicado son: "));
 					diferent=true;
 				}
 				return msg;
@@ -462,7 +467,7 @@ public class Club implements Comparable<Club>{
 				String msg = "";
 				boolean diferent = false;
 				for (int i=0;i<owners.size() && !diferent ;i++) {
-					msg = owners.get(i).busquedaTradID(id);
+					if(owners.get(i).busquedaTradID(id).equals("Se ha encpntrado la mascota con el Id y su nombre es: "));
 					diferent=true;
 				}
 				return msg;
@@ -471,7 +476,7 @@ public class Club implements Comparable<Club>{
 				String msg = "";
 				boolean diferent = false;
 				for (int i=0;i<owners.size() && !diferent ;i++) {
-					msg = owners.get(i).busquedaTradBirthDate(birthDate);
+					if(owners.get(i).busquedaTradBirthDate(birthDate).equals("La(s) Mascota(s) con la fecha de nacimiento son: "));
 					diferent=true;
 				}
 				return msg;
@@ -480,20 +485,28 @@ public class Club implements Comparable<Club>{
 				String msg = "";
 				boolean diferent = false;
 				for (int i=0;i<owners.size() && !diferent ;i++) {
-					msg = owners.get(i).busquedaTradPettype(petType);
+					if( owners.get(i).busquedaTradPettype(petType).equals("La(s) Mascota(s) del  tipo   Indicado son: "));
 					diferent=true;
 				}
 				return msg;
 			}
+		
+			
+					
 			public String  tradSearchPetGender(int gender) {
 				String msg = "";
 				boolean diferent = false;
 				for (int i=0;i<owners.size() && !diferent ;i++) {
-					msg = owners.get(i).busquedaTradGender(gender);
+					if(owners.get(i).busquedaTradGender(gender).equals("La(s) Mascota(s) del  Genero  Indicado son: "));
 					diferent=true;
 				}
 				return msg;
 			}
+			
+			
+			
+			
+			
 			//Responsabilidades de Metodo binario 
 			public boolean binSearchNamePet(String name) {
 				boolean diferent =false;
@@ -533,11 +546,87 @@ public class Club implements Comparable<Club>{
 				return diferent;
 			}
 			
+			//eliminateOwner
+			
+			public String eliminateOwner(String id) {
+				String msg ="El Id del dueno no existe";
+				boolean diferent =false;
+				for (int i=0;i<owners.size() && !diferent;i++ ) {
+					if (owners.get(i).getId().equals(id)){
+					   owners.remove(i);
+					   msg ="Se ha eliminado el dueno";
+					   diferent=true;
+					}
+				}
+				return msg;
+			}
+			
+			//elimanteRespoPet
+			public String  eliminatePet(String id) {
+				String msg = "No existe la mascota";
+				boolean diferent = false;
+				for (int i=0;i<owners.size() && !diferent ;i++) {
+					if(owners.get(i).eliminatePet(id).equals("Se ha eliminado la mascota")) {
+						
+						msg = "Se ha eliminado la mascota";
+						diferent=true;
+					}
+				}
+				return msg;
+			}
 			
 			
 			
 			
 			
+			
+			//Responsabilidades de Ordenamiento de pets
+			
+			
+			public void ortherdtNamesPet() {
+				for (int i = 0; i < owners.size(); i++) {
+					owners.get(i).ortherdNamePet();;
+				}
+			}
+			public void ortherdID() {
+				for (int i = 0; i < owners.size(); i++) {
+					owners.get(i).ortherdID();;
+				}
+			}
+			public void ortherdGenderPet() {
+				for (int i = 0; i < owners.size(); i++) {
+					owners.get(i).ortherdGenderPet();;
+				}
+			}
+			public void ortherdBirthDay() {
+				for (int i = 0; i < owners.size(); i++) {
+					owners.get(i).ortherdBirthDay();
+				}
+			}
+			public void ortherdMascotsType() {
+				for (int i = 0; i < owners.size(); i++) {
+					owners.get(i).ortherdMascotsType();
+				}
+			}
+
+
+
+			@Override
+			public String toString() {
+				return "Club [id=" + id + ", name=" + name + ", creationdate=" + creationdate + ", mascotsType="
+						+ mascotsType + ", owners=" + owners + "]";
+			}
+			
+			public void addPets(Pet p, String idOwner) {
+				boolean founded = false;
+				for(int i=0; i < owners.size() && !founded; i++) {
+					if(owners.get(i).getId().equals(idOwner)) {
+						founded = true;
+						owners.get(i).addPets(p);
+					}
+				}
+			}
+		}
 			
 			
 			
@@ -556,5 +645,5 @@ public class Club implements Comparable<Club>{
 			
 
 	
-}
+
 		

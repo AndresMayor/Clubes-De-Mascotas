@@ -217,7 +217,7 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 		
 		for (int i =0;i<pets.size() ;i++) {
 			if( pets.get(i).getPetType().equals(mascotType) ) {
-				msg = "La(s) Mascota(s) del  Tipo Indicado son: ";
+				msg = "La(s) Mascota(s) con la fecha de nacimiento son: ";
 			    msg += pets.get(i).getName()+"\n";
 			
 			}
@@ -373,6 +373,27 @@ public class Owner  implements Serializable ,Comparator<Owner>,Comparable<Owner>
 	}
 	
 	
+	
+	//eliminarpet
+	
+	public String eliminatePet(String id) {
+		String msg ="El Id de la mascota no existe";
+		boolean diferent =false;
+		for (int i=0;i<pets.size() && !diferent;i++ ) {
+			if (pets.get(i).getId().equals(id)){
+			   pets.remove(i);
+			   msg ="Se ha eliminado la mascota";
+			   diferent=true;
+			}
+		}
+		return msg;
+	}
+
+	@Override
+	public String toString() {
+		return "Owner [id=" + id + ", names=" + names + ", lastNames=" + lastNames + ", birthDate=" + birthDate
+				+ ", mascotsType=" + mascotsType + ", pets=" + pets + "]";
+	}
 	
 	
 	
