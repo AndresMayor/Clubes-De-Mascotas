@@ -1,27 +1,36 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Investor {
 	
 	
-	public static final String ARCHIVO_PLANO = "‎⁨Macintosh HD⁩ ▸ ⁨Usuarios⁩ ▸ ⁨andresmayor⁩ ▸ ⁨Escritorio⁩ ▸ ⁨CLUBPETS▸archivosapoII.csv" ;
+	 
 	
-			
+	public static final String ARCHIVO_PLANO ="clubes.txt";
 			
 			
 	private ArrayList<Club> clubs;
-	
+
+
 	
 	
 	public Investor()  {
 		
-		clubs = new ArrayList<Club>();
+		clubs = new ArrayList<>();
+		
+		try {
+			loadData();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
 		//loadData();
 	}
 	
@@ -59,8 +68,14 @@ public class Investor {
 	
 	
 	
-	public void addClub (Club club) {
+	public void addClub (Club club) throws IOException {
+		
 		clubs.add(club);
+		File file = new File(ARCHIVO_PLANO);
+		FileWriter writer = new FileWriter(file.getAbsoluteFile(),true);
+		BufferedWriter bwriter = new BufferedWriter(writer);
+		bwriter.write(club.toString()+ "\n");
+		bwriter.close();
 	}
 	
 	
@@ -544,11 +559,13 @@ public class Investor {
 		Club club1 = new Club("1929383929","Aranzazu","2017/03/20","Dogs");
 		Club club2 = new Club("1233383929","Arcas","2016/07/10","cats");
 		Club club3 = new Club("2344322324","Kahlua","2019/09/09","Dogs");
-		Club club4 = new Club("1","Kaiser","2014/11/23","conejos");
+		Club club4 = new Club("1000030303","Kaiser","2014/11/23","conejos");
+		Club club5 = new Club("1232333332","Albeiros","2010/02/10","Dogs");
 		clubs.add(club1);
 		clubs.add(club2);
 		clubs.add(club3);
 		clubs.add(club4);
+		clubs.add(club5);
 		
 	}
 	//responseliminateowner
@@ -666,6 +683,11 @@ public class Investor {
 				equal=true;
 			}
 		}
+	}
+	
+	
+	public void pintarOwners() {
+		
 	}
 }
 	

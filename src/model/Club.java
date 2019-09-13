@@ -25,6 +25,7 @@ public class Club implements Comparable<Club>{
 	private ArrayList<Owner> owners;
 	
 	
+	
 	public Club(String id, String name, String creationdate, String mascotsType)  {
 		
 		this.id = id;
@@ -36,11 +37,18 @@ public class Club implements Comparable<Club>{
 			try {
 				new File(id).createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
+		}try {
+			loadData();
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}catch(ClassNotFoundException x) {
+			x.printStackTrace();
+		}catch(IOException v) {
+			v.printStackTrace();
 		}
-		loadData();
 	}
 
 
@@ -114,9 +122,46 @@ public class Club implements Comparable<Club>{
 	}
 
 	
+	/*public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File file = new File(id + ".csv");
+		BufferedReader breader = new BufferedReader(new FileReader(file));
+		String line;
+		File f1 = new File(id);
+		ObjectOutputStream object = new ObjectOutputStream(new FileOutputStream(f1));
+		try {
+			//String id, String names, String lastNames, String birthDate, String mascotsType,//String id, String name, String birthDate, String petType, int gender
+			while((line = breader.readLine()) != null) {
+				if(!line.equals("name,lastName,id,birth,typPet,idPet,namePet,bithPet,petType,gender")) {
+					String[] s = line.split(",");
+					Owner o = new Owner(s[2], s[0], s[1], s[3], s[4]);
+					//Pet np = new Pet(s[5],s[6],s[7],s[8],Integer.parseInt(s[9]));
+				
+					//o.addPets(np);
+					owners.add(o);
+					object.writeObject(o);
+				}
+			}
+		} catch(IndexOutOfBoundsException e) {
+			
+		}
+		object.close();
+		breader.close();
+	}*/
+	public void loadData() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File file = new File(id);
+		ObjectInputStream object = new ObjectInputStream(new FileInputStream(file));
+		Owner aux = (Owner)object.readObject();
+		try {
+			while(aux != null) {
+				owners.add(aux);
+				aux = (Owner)object.readObject();
+			}
+		} catch(Exception e) {
+			
+		}
+		object.close();
+	}
 	
-	
-
 	
 	public boolean equalOwner (Owner o1) {
 		 boolean diferent = false;
@@ -226,18 +271,7 @@ public class Club implements Comparable<Club>{
 			
 			
 			
-			public void loadData() {
-				File file = new File(id);
-				if(file.exists()) {
-					try {
-						ObjectInputStream o = new ObjectInputStream(new FileInputStream(file));
-						owners =(ArrayList<Owner>)o.readObject();
-						o.close();
-					}catch(Exception e) {
-						
-					}
-				}
-			}
+			
 			
 			
 			//Metodos de Busqueda Tradicional
@@ -617,6 +651,9 @@ public class Club implements Comparable<Club>{
 						+ mascotsType + ", owners=" + owners + "]";
 			}
 			
+			
+			
+			
 			public void addPets(Pet p, String idOwner) {
 				boolean founded = false;
 				for(int i=0; i < owners.size() && !founded; i++) {
@@ -626,11 +663,17 @@ public class Club implements Comparable<Club>{
 					}
 				}
 			}
-		}
 			
 			
 			
 			
+			
+			}
+		
+			
+			
+			
+		
 			
 			
 
